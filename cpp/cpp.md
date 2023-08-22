@@ -261,3 +261,33 @@ std::cout.setf(ios_base::fixed, ios_base::floatfield); //固定浮点
 并且可能浮点对整型太大了  
 没有规定编译器应该对这种情况做出什么
 
+不允许缩窄转换  
+```
+long = {int} //可以因为保留了所有信息
+int = {long} //不可以
+
+```
+
+![Alt text](image-7.png)
+
+![Alt text](image-8.png)
+
+强制类型转换 `long (a)`
+
+```
+(long) a //创建一个新的变量类型long 值为a的
+long (a)  //同上
+
+//或者是
+static_cast<long> a //也可以, 但是要求更加严格
+
+
+```
+
+数组
+
+`short a[10]`
+
+使用`sizeof a` 可以得到 类型 \* 数组长度 的占空间  
+`sizeof a[0]` 返回 类型所占字节数   
+`int cards[3] = {20, 30, 5};`来赋值  

@@ -106,3 +106,363 @@ printf('%s',"25")
 printf('%d',25)
 ```
 
+![Alt text](image-4.png)
+
+函数原型和函数声明的不同之处:
+- 函数原型规定了接受的输入和输出 使编译器知道如何检查函数的使用
+- 函数声明真正负责实现函数的功能
+
+函数原型以分号结束  
+而函数声明需要大花括号
+
+![Alt text](image-5.png)
+
+
+
+这样使用using:
+
+```
+int main(){
+    using namespace std;
+    ...
+}
+```
+可以只在main 内使用名称空间
+
+sizeof 运算符(?)
+
+`sizeof a` 会变成 a 的长度  
+而对类型使用sizeof的时候应该要`sizeof (int)` (?)   
+
+无符号类型
+
+```
+unsigned int a #无符号整型
+unsigned a #同样无符号整型
+
+```
+
+![Alt text](image-6.png)
+
+使用cout输出不同进制的数字  
+在此处  
+hex相当于传入cout的消息, 并且hex 是 std::hex  
+因此在using之后  
+hex不能作为变量名
+
+并且, cout 将输入流中的数字默认存储成int  
+使用
+```
+
+cout << 2022UL;
+```
+表示要存成 unsigned long  
+被称为后缀, 同样使用ULL 可以存成unsigned long long
+
+unsigned int 比较适合用来表示地址
+
+cin和cout都会根据数据类型去转换输入->存储和 存储->输出
+
+C++对字符使用单引号  
+对字符串使用双引号
+
+cout也可以同时处理字符串和字符  
+同样, `cout.put()` 可以只输出一个字符
+
+char  
+char就是表示一个字节  
+因此char有无符号特别重要  
+可以用signed char 和 unsigned char 显式指定  
+如果直接char就都有可能
+
+宽字符集  
+用 wchar_t 来申明宽字符  
+宽字符可能在不同的系统上有不同的表现 (2字节 or 4字节)   
+在这种情况下  
+cin 和 cout 将输入视作 char 流  
+因此不适用 wchar_t 类型  
+而iostream 提供了 wcout 和 wcin 为了处理这种
+
+类似的  
+char16_t 长16位无符号  
+char32_t 长32为无符号  
+
+```
+wchar_t a = L'P'; //L指示存储为宽字符
+char16_t a = u'P'; // u指示存储为16位
+char32_t a = U'P';
+
+```
+
+```
+bool a = true;
+bool a = -100; //都会让 a 成为 true
+
+int b = true; //让 b 变成 1
+
+
+
+```
+
+const 加在任何变量申明前 申明的变量是不可修改的
+
+```
+//拒绝这样做
+const int a;
+a = 2; //太晚啦
+
+//应该这样
+const int a = 2;
+
+```
+
+`7.2e+15` 这是 e 表示法
+
+浮点类型  
+float 32位  
+double 64位  
+long double 80 96 或者是 128 位   
+
+可以更改 `cfloat.h` 中的内容来改变 浮点数的有效位数(?)
+
+```
+
+std::cout.setf(ios_base::fixed, ios_base::floatfield); //固定浮点
+// 这句话让cout不会删除掉输出末尾的 0 
+```
+
+```
+1.2f //属于float
+1.2F //float
+1.2 // double
+1.2L //long double
+
+```
+
+如果在除法的时候  
+两个操作数都是整数 则cpp执行整数除法  
+有任何一个是浮点数就执行浮点除法  
+
+同样
+```
+1.2 / 2.3 //double 除法
+1.2f / 2.3f //float 除法
+1.2L / 2.3L //long 除法
+```
+
+如果把一个short赋值给long  
+则会将short扩展 变成long  
+
+反之将long赋值给short  
+则会只赋值低几位  
+
+将浮点赋值给整型会出现问题  
+一个是小数部分会被截断  
+并且可能浮点对整型太大了  
+没有规定编译器应该对这种情况做出什么
+
+不允许缩窄转换  
+```
+long = {int} //可以因为保留了所有信息
+int = {long} //不可以
+
+```
+
+![Alt text](image-7.png)
+
+![Alt text](image-8.png)
+
+强制类型转换 `long (a)`
+
+```
+(long) a //创建一个新的变量类型long 值为a的
+long (a)  //同上
+
+//或者是
+static_cast<long> a //也可以, 但是要求更加严格
+
+
+```
+
+数组
+
+`short a[10]`
+
+使用`sizeof a` 可以得到 类型 \* 数组长度 的占空间  
+`sizeof a[0]` 返回 类型所占字节数   
+`int cards[3] = {20, 30, 5};`来赋值  
+对于数组, 就不能`cards1 = cards2;`
+`int cards[3] = {1,2};` 就只能初始化前两个元素, 其他元素设置为0  
+`int cards[100] = {0};` 编译器会让所有的元素都被初始化为0  
+`int cards[] = {1,2,3,4};` 会变成长度为4的cards  
+**列表初始化禁止缩窄转换**  
+
+```
+char a[] = {'1','a','b','\0'}; // 这是字符串   如果没有最后的\0就不是字符串
+char a[3] = "mi" // 编译器会理解 \0
+char a[] = "mifaso"  //c对字符串长度没有限制  
+
+```
+
+`'S'` 表示的只是S的ASCII 相当于 83  
+但`"S"` 是 S 和 \0 组成的字符串  
+并且尝试`char a = "S";` 表示的是字符串所在的内存地址  
+
+```
+#include <cstring> //为了strlen()
+int main(){
+    char a[] = "qwer";
+    //此时 strlen(a) 返回有多少字符 这里是4个
+    //此时 sizeof(a) 返回有占多少个字节 (包括未使用的空字节) 这里是5个 记住要算 \0 的占位
+
+}
+
+```
+**注意strlen 只计算可见的字符 空字符并不算在其中**  
+**提前 \0 的位置会让字符串提前结束! 哪怕后面还有内容!!**  
+
+cin 使用空白字符来确定字符串结束位置    **空格  制表符  或者换行符**  
+
+`cin.getline(a,20)` 可以将 一行 少于19个字节的语句 抛去最后的换行 写入到a 内  
+相当于使用 \0 来替换换行符  
+
+`cin.get(a,20)` 则不会从输入管道中读取换行符, 而是直接将他留在原位置, 连续使用两个cin.get()会导致第二个读入0字节  
+```
+//但是可以这样
+cin.get(a,20);
+cin.get(); //换行
+cin.get(b.12);
+
+//这么写 读入并换行
+cin.get(a,20).get();
+//这么写 相当于使用两次getline()
+cin.get(a,20).get(b.20);
+```
+
+cin.get在读取空行之后会设置 **失效位**  
+意味着接下来的输入将被阻断  
+cin.clear(); 可以清除这种阻断  
+
+在输入比分配的空间长时  
+get 和 getline 都会把剩下的字符留在队列中  
+同时getline 会设置失效位, 关闭后面的输入  
+
+总之  
+**getline使用起来更容易  而get 方便检查错误**  
+
+一个例子  
+
+```
+int year;
+cin >> year;
+cin.getline(a,20);
+
+```
+在运行时完全没有机会可以输入a  
+这是因为year在读取的时候不会干掉换行符  
+而getline遇到了换行符因此结束  
+
+于是要
+```
+cin >> year;
+cin.get();
+
+//或者是
+
+(cin >> year).get();
+
+```
+
+## string
+
+std::string 隐藏了字符串和字符数组的不同点  
+
+```
+#include <string>
+
+string a = "123321";
+cin >> a;
+
+```
+
+不同之处在于  
+string可以被初始化为简单变量  
+而不是数组  
+str的声明可以创建一个 0 长度的string  
+然后在读入输入的时候自动调整str的长度  
+
+`string a = {"123321"}` 也是可以的  
+
+**cpp里不能将一个数组赋值给另一个数组 但是, string可以赋值**  
+
+同样 字符串拼贴类似python  
+`str3 = str2 + str1;`  
+甚至可以  
+`str2 += str1;`  
+
+赋值字符数组 `strcpy(char1,char2);`   
+连接字符数组 `strcat(char1,char2);`
+
+而 strncat 和 strncpy 提供了第三个参数   指出了目标数组允许的长度  
+从而更加安全了  
+
+strlen 是 统计字符个数直到遇到 \0  
+因此对未初始化的 char 数组使用 strlen 则会出现**char 内没有\0 直到许多字节后才会出现 \0**  
+这就导致了, strlen 甚至会远大于 char 数组的长度  
+
+而初始化前 的 str 则长度为0   
+str.size() 也会说是 0
+
+有一个不是类方法的getline :  
+`getline(cin,str); //这里不是ste::cin.getline 而是 istream 类的一个方法`
+
+```
+wchar_t a[] = L"123321";
+char16_t a[] = u"123321";
+char32_t a[] = U"123321";
+```
+
+原始字符串  
+相当于python的r""  
+但不一样的是  
+在其中使用 "" 都不会有问题  
+`str = R"( 我是一个字符串 \0 \n 并且只有一行 """"""""''' )";`
+
+输入原始字符串的时候  
+按回车键会将光标移动到下一行  
+并且会在原始字符串中添加回车字符  
+
+如果使用`"+*()*+"` 就可以在中间使用 "()" 了  
+
+原始字符串 可以自定义**定界符**  
+
+在标识wchar_t时  
+R和U的顺叙可以任意指定
+
+
+## struct
+
+```
+struct a{
+    int b;
+    float c;
+    char d;
+}
+
+//接着
+
+a hat; //用于创建变量
+a foo = {
+    12,
+    1.2,
+    '2'
+}; //不能忘记分号
+
+```
+
+在申明struct 的时候  
+外部的声明可以用在所有的内部函数中  
+但是函数内的声明只能用在内部
+
+struct 不允许缩窄
+

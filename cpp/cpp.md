@@ -466,3 +466,193 @@ a foo = {
 
 struct 不允许缩窄
 
+struct 允许占位
+```
+struct a{
+    unsigned int ab : 4;
+    unsigned int : 4; //没有使用的4bits 
+};
+
+而初始化则
+a new_para = {2};
+少输入一个参数
+
+```
+
+共用体   
+创建时被称为共用体  
+使用时可以是 int 或者 float 或者其他  
+但不能同时存储不同数据类型的数据
+
+使用方法和结构体共同使用  
+避免了因为某个字段类型不同而必须申明两个结构体
+
+```
+union all{
+    int int_val;
+    long long_val;
+};
+
+all a;
+a.int_val = 4;
+a.long_val = 4444444444444;
+
+//用在结构体重
+
+struct xxx{
+
+    union id {
+        long long_val;
+        int int_val;
+    } id_val;
+};
+xxx foo;
+cin >> foo.id_val.int_val;
+
+//匿名共用体
+
+struct baz{
+    union{
+        char char_val;
+        int int_val;
+    };
+};
+baz yyy;
+cin >> yyy.char_val;
+
+```
+
+枚举
+
+```
+enum foo {app, bananana}; //创建枚举体
+
+foo baz;
+
+baz = app; //可以的
+baz = 2; //不行
+
+```
+
+对于枚举  
+只定义了赋值运算符  
+意味着自增运算 减法运算等运算都非法  
+**枚举量是整型!**
+
+```
+int c = app; //可以的, 转换为int
+c = 3 + bananana; //也是可以的
+
+```
+
+在算数表达式中  
+枚举量会被转化为整型  
+因此
+app + banana 会是 0 + 1 等于一个整型
+
+申明指针
+
+```
+int * pointer;
+
+```
+
+用 new 找到一片合适的内存
+
+```
+int * p = new int;
+
+delete p;
+
+```
+
+delete 只允许作用于 new 分配的内存  
+如果内存来自于其他的变量 &a  
+则delete失效
+
+```
+int  * pt = new int [100];
+//直接用pt[12] 来访问元素
+pt = pt + 1; //指向下一个元素
+// 由于int 是长4字节
+// 因此对于指针而言, 运算在这里有特别的处理
+delete [] pt;
+
+```
+
+`stacks[1]` 效果等于 `*(stacks  + 1)` 
+
+数组名和指针唯一的区别就是  
+`指针 = 指针 + 1; // 可以而数组不行`
+
+cpp将数组名视作指向数组第一个元素的地址  
+
+```
+int taco[10];
+// 现在 taco == &taco[0]
+
+```
+
+当对数组名使用 `sizeof` 的时候  
+返回整个数组的长度
+
+数组指针相加减的最小单位就是元素长度  
+
+string 传递的是头  
+因此  
+必须对string 进行深拷贝  
+
+```
+#include <iostream>
+#include <cstring>
+
+int main(){
+    char animal[] = "312";
+    char * ps; //未初始化的
+
+    ps = animal; // 会让这两个数组指向同一个地址
+    ps = new char[strlen(animal) + 1]; //重新初始化ps的地址 未初始化的指针是危险的!
+    strcpy(ps, animal);
+    // 这样才完成了复制
+}
+
+
+```
+
+`const char * bird = "www";`
+
+strncpy 是安全版本的 strcpy  
+接受第三个参数  
+表明最多允许多少个复制  
+第三个参数最大设置成最大长度 - 1  
+来给最后的空字符留下位置
+
+**在初始化之外, string 应当这样赋值:**  
+```
+char food[20] = "banana";
+strcpy(food,"other food");
+
+```
+
+
+动态结构成员访问
+
+```
+struct thing{};
+
+thing foo = {1,2,3};
+thing * pt = &foo; //此时pt是动态结构
+
+//foo.name == (*pt).name == pt->name
+
+```
+
+静态存储 : `static double xxx;`  
+自动存储 :  调用函数时产生的变量自动存储 在函数 return 后自动释放
+动态存储 : new delete (存储在 free store 或者是 heap中) 此种数据的生命周期并不由创建之的函数决定, 而更加灵活
+
+在栈中, 自动存储使占用的内存总是连续  
+但动态存储分割内存使得其不连续
+
+`int s1, s2, s3;`
+

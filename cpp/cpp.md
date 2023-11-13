@@ -656,3 +656,68 @@ thing * pt = &foo; //此时pt是动态结构
 
 `int s1, s2, s3;`
 
+
+**vector 和 array 是 数组 的 替代品**
+
+```
+vector<int> vi;  %零长度 vector 数据类型为int
+
+vector<type> name(n); %声明一个定长的
+
+
+```
+
+array 使用 **静态分配内存** 而不是自由存储区, 因此更快
+
+```
+array<int, 5> ab = {1,2,3,4};
+
+
+```
+
+**可以直接将一个array赋值给另一个array**   
+而数组必须逐元素复制
+
+在array中`a[2] 的效果相当于a.at(2)` 但使用at进行了检查 这牺牲了时间  
+往往包含 a.begin() 和 a.end()
+
+```
+int i;
+for (i = 0;i<5; i++){ // for 和 后面的括号之间是有一个空格的
+    pass
+}
+
+```
+
+相当于是
+
+```
+i = 0;
+do
+    if !(i < 5) break
+    else i++ and do sth
+loop
+
+```
+
+**for 语句先检测 再执行 最最后更新, 因此 i<5 时 i 不可以取到 5**
+
+`a++` 的 return 值仍然为 a  
+`++a` 的 return 值为 a + 1
+
+
+```
+// 这样是可以的, 定义一个临时变量temp
+
+int main(){
+    int x; //永久变量
+    {
+        int temp; //临时变量
+    }
+    temp ;;/// 未定义变量
+
+}
+
+
+```
+

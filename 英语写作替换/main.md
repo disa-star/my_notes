@@ -39,3 +39,8 @@ Crowdfunding 众筹
 
 depend on   不如   reliant on
 
+environmental debts  
+carbon footprint
+
+房地产 real estate
+

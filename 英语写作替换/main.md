@@ -19,6 +19,7 @@ fiscal 财政
 capital source
 
 societal 社会的 (时俗的)  
+secular 世俗的  
 societal standards
 
 well-versed in a field 熟知某领域  
@@ -43,4 +44,6 @@ environmental debts
 carbon footprint
 
 房地产 real estate
+
+diagnostic property
 

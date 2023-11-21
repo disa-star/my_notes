@@ -47,3 +47,9 @@ carbon footprint
 
 diagnostic property
 
+a building of magnificence **注意of adj 语句, 很好用的**
+
+A be subordinate to B   
+A be subordinated to B
+好用 A 隶属于 B
+

@@ -8,7 +8,7 @@ well equipped with
 be armed with
 
 intrinsic   与生俱来(不随xxx改变而改变)  
-integral 不可或缺
+integral 不可或缺 indispensable
 
 take sth for instance.   
 take, for instance, sth.
@@ -52,4 +52,21 @@ a building of magnificence **注意of adj 语句, 很好用的**
 A be subordinate to B   
 A be subordinated to B
 好用 A 隶属于 B
+
+overlook 做非谓语伴随   
+以及 neglect,  negligence
+
+**dampen** the enthusiasm 抑制热情
+
+binary 
+
+utilitarian \& utilitarianism
+
+how are you holding up (with all of these?) 你还好吧(在经历了这一切后?)
+
+quarantine 隔离  
+
+homestay 民宿 Bed and Breakfast (B&B) 
+
+文化遗产 cultural heritage(s)
 

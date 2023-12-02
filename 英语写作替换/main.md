@@ -115,6 +115,8 @@ deliberation 慎重考虑
 
 朋友圈 : moments
 
+not the other way around
+
 ---
 常看常新: 哲学词汇积累  
 

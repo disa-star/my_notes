@@ -10,3 +10,4 @@ jeff koons rabbit
 博布尔效应: Beaubourg effect : 无法将原型和复制品分开, 丧失了现实感
 
 文化调校 (cultural conditioning) 文化会对一个人的行为产生影响
+

@@ -115,7 +115,11 @@ deliberation 慎重考虑
 
 朋友圈 : moments
 
-not the other way around
+not the other way around  
+share ride and save gas (搭便车)  
+scroll back 回滚 refer back
+
+
 
 ---
 常看常新: 哲学词汇积累  
